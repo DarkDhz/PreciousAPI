@@ -1,0 +1,9 @@
+name: PreciousAPI
+version: "1.0"
+main: dev.darkhorizon.es.psAPI.Main
+load: POSTWORLD
+depend: [PreciousStones]
+commands:
+  pkick:
+    usage: /<command>
+    aliases: [pskick, menaskick, mkick]
