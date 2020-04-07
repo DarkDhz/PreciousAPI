@@ -1,6 +1,6 @@
 package dev.darkhorizon.es.psAPI;
 
-import dev.darkhorizon.es.psAPI.commands.kick;
+import dev.darkhorizon.es.psAPI.commands.PSKick;
 import dev.darkhorizon.es.psAPI.events.PSEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -21,7 +21,7 @@ public class Main extends JavaPlugin {
     }
 
     private void initCommands() {
-        this.getCommand("pkick").setExecutor(new kick());
+        this.getCommand("pkick").setExecutor(new PSKick());
     }
 
 }

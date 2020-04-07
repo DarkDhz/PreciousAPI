@@ -31,6 +31,9 @@ public class PSEvents implements Listener {
                 }
             }
         } else if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (p.isOp()) {
+                return;
+            }
             if (checkItem(p)) {
                 if (PreciousStones.API().isFieldProtectingArea(FieldFlag.ALL, e.getClickedBlock().getLocation())
                     || PreciousStones.API().isFieldProtectingArea(FieldFlag.ALL, p.getLocation())) {
