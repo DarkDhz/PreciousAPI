@@ -1,5 +1,6 @@
 package dev.darkhorizon.es.psAPI.commands;
 
+import net.sacredlabyrinth.Phaed.PreciousStones.PreciousStones;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,8 +11,6 @@ public class kick implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
             manageCommand((Player) commandSender, strings);
-        } else {
-            commandSender.sendMessage("Commando solo disponible para jugadores");
         }
         return true;
     }
@@ -25,6 +24,10 @@ public class kick implements CommandExecutor {
                 p.sendMessage("El jugador " + args[0] + " no esta conectado al servidor");
             } else {
                 target.getLocation();
+                boolean can = PreciousStones.API().canPlace(target, target.getLocation());
+                System.out.println(can);
+                p.sendMessage("has expulsado a " + target.getName());
+                target.sendMessage("Te han expulsado de la mena");
             }
         }
 

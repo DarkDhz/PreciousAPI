@@ -21,10 +21,14 @@ public class PSEvents implements Listener {
         Player p = e.getPlayer();
         if (e.getAction() == Action.LEFT_CLICK_BLOCK) {
             if (PreciousStones.API().isPStone(e.getClickedBlock().getLocation()) &&
-                    p.getItemInHand().hasItemMeta() &&
-                    p.getItemInHand().getItemMeta().getDisplayName().equals("")) {
-                //e.setCancelled(true);
-                p.sendMessage("¡No puedes romper menas con este item!");
+                    p.getItemInHand().hasItemMeta()) {
+                for (String line : p.getItemInHand().getItemMeta().getLore()) {
+                    if (line.contains("Fundicion") || line.contains("Autofundición")) {
+                        e.setCancelled(true);
+                        p.sendMessage("¡No puedes romper menas con este item!");
+                        break;
+                    }
+                }
             }
         } else if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (checkItem(p)) {
@@ -42,17 +46,11 @@ public class PSEvents implements Listener {
             return p.getItemInHand().getItemMeta().getDisplayName().equals("§eMena de diamante")
                     || p.getItemInHand().getItemMeta().getDisplayName().equals("§eMena de oro")
                     || p.getItemInHand().getItemMeta().getDisplayName().equals("§eMena de hierro")
+                    || p.getItemInHand().getItemMeta().getDisplayName().equals("§eMega mena")
                     || p.getItemInHand().getItemMeta().getDisplayName().equals("§eMena de inicio");
         } else {
             return false;
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlace(BlockPlaceEvent e) {
-        if (PreciousStones.API().isFieldProtectingArea(FieldFlag.ALL, e.getBlock().getLocation())) {
-
-            //e.setCancelled(true);
-        }
-    }
 }
